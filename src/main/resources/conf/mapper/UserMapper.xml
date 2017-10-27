@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qhx.myfbrid.dao.UserMapper">
+	<sql id="AllColumns">
+		username, userId, nickname, gender, 
+		password, usermail, state, isSeller,
+		lastLoginTime, createTime
+	</sql>
+		
+	<!-- check username and password for login-->
+	<select id="findUserByUsernameAndPassword" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) from t_user 
+			where
+		username = #{username} and password = #{password}
+	</select>
+	
+	<!-- 根据检查是否存在用户 -->
+	<select id="findUserByUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) from t_user 
+			where
+		username = #{username}
+	</select>
+	
+	<!-- register -->
+	<insert id="register" parameterType="com.qhx.myfbrid.model.User">
+		insert into 
+			t_user
+		values(<include refid="AllColumns">)
+	</insert>
+	
+	<!-- 更新用户信息 -->
+	<update id="updateUserInfoByUserId" parameterType="com.qhx.myfbrid.model.User">
+		update t_user
+		<set>
+			username = #{username}, gender = #{gender}, password = #{password},
+			usermail = #{usermail}, state = #{state}, isSeller = #{isSeller},
+			lastLoginTime = #{lastLoginTime}
+		</set>
+		where userId = #{userId}
+	</update>
+</mapper>

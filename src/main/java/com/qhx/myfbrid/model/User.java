@@ -14,7 +14,7 @@ public class User {
 	/** 用户名 */
 	@Setter
 	@Getter
-	private String userName = "";
+	private String username = "";
     /** 用户id */
 	@Setter
 	@Getter
@@ -22,7 +22,7 @@ public class User {
     /** 昵称 */
 	@Setter
 	@Getter
-	private String nickName = "";
+	private String nickname = "";
     /** 0:女  1:男 */
 	@Setter
 	@Getter
