@@ -5,11 +5,13 @@
 package com.qhx.myfbrid.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.qhx.myfbrid.dao.UserMapper;
 import com.qhx.myfbrid.model.User;
 import com.qhx.myfbrid.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper userMapper;
