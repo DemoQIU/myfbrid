@@ -4,6 +4,10 @@
  */
 package com.qhx.myfbrid.service;
 
-public interface GoodsService {
+import java.util.List;
 
+import com.qhx.myfbrid.model.Goods;
+
+public interface GoodsService {
+	List<Goods> findAllGoods();
 }

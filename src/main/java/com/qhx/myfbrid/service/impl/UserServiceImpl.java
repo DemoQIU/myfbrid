@@ -17,18 +17,15 @@ public class UserServiceImpl implements UserService{
 	private UserMapper userMapper;
 	
 	@Override
-	public void save(User user) {
-		userMapper.register(user);
+	public int save(User user) {
+		return userMapper.register(user);
 	}
-
+	
+	//根据用户传入的用户名和密码检查用户是否可以登录
 	@Override
-	public boolean checkLogin(String username, String password) {
-		int count = userMapper.findUserByUsernameAndPassword(username, password);
-		if(count > 0){
-			return true;
-		}else{
-			return false;
-		}
+	public User checkLogin(String username, String password) {
+		User user = userMapper.findUserByUsernameAndPassword(username, password);
+		return user;
 	}
 
 	@Override

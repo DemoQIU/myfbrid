@@ -10,8 +10,8 @@ import com.qhx.myfbrid.model.User;
 
 @Repository(value = "userMapper")
 public interface UserMapper {
-	int findUserByUsernameAndPassword(String username,String password);
+	User findUserByUsernameAndPassword(String username,String password);
 	int findUserByUserName(String username);
-	void register(User user);
+	int register(User user);
 	void updateUserInfoByUserId(User user);
 }

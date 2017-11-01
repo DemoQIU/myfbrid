@@ -7,6 +7,8 @@ package com.qhx.myfbrid.utils;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.google.gson.Gson;
 
 import lombok.NoArgsConstructor;
@@ -63,7 +65,19 @@ public class ResultUtils {
 		resultMap.put("message", message);
 		return toJson(resultMap);
 	}
-
+	
+	/**
+	 * 
+	 * 方法说明:getUrlJson
+	 * @return
+	 */
+	public static String getUrlJson(HttpServletRequest request){
+		resultMap.clear();
+		resultMap.put("state", RequestStates.success.getStatus());
+		resultMap.put("url", UserUtils.getBeforeLoginUrl(request));
+		return toJson(resultMap);
+	}
+	
 	/**
 	 * 方法说明:toJson
 	 * @param resultMap2

@@ -23,7 +23,7 @@ public class Goods {
     /** 商品 描述 */
 	@Setter
 	@Getter
-	private String goodsDel = "";
+	private String goodsDesc = "";
     /** 商品 价格 */
 	@Setter
 	@Getter
