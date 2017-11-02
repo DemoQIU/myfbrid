@@ -43,4 +43,9 @@ public class ShiroManager {
 			logger.warn("--->user {} has't login <---",((User)(SecurityUtils.getSubject().getPrincipal())).getNickname());
 		}
 	}
+	
+	//获得当前用户
+	public static User getCurrentUser(){
+		return (User)SecurityUtils.getSubject().getPrincipal();
+	}
 }

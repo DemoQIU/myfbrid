@@ -24,5 +24,17 @@ public class GoodsServiceImpl implements GoodsService{
 		List<Goods> goods = goodsMapper.selectAllGoods();
 		return goods;
 	}
-
+	
+	//根据商品Id查找商品信息
+	@Override
+	public Goods findGoodsById(String id) {
+		return goodsMapper.queryGoodsById(id);
+	}
+	
+	//根据商品关键字模糊查询商品
+	@Override
+	public List<Goods> findGoodsByKeyword(String keyword) {
+		List<Goods> goodsList = goodsMapper.queryGoodsByKeyword(keyword);
+		return goodsList;
+	}
 }

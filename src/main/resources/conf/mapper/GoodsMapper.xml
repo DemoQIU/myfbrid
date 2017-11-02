@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qhx.myfbrid.dao.GoodsMapper">
+	<resultMap type="com.qhx.myfbrid.model.Goods" id="goodsMap">
+		<result column="G_ID" property="goodsId" jdbcType="INTEGER"/>
+		<result column="G_NAME" property="goodsName" jdbcType="VARCHAR"/>
+		<result column="G_DESCRIBE" property="goodsDesc" jdbcType="VARCHAR"/>
+		<result column="G_PRICE" property="goodsPrice" jdbcType="DECIMAL"/>
+		<result column="G_MADE" property="goodsAddress" jdbcType="VARCHAR"/>
+		<result column="G_AMOUNT" property="goodsCount" jdbcType="INTEGER"/>
+		<result column="G_CREATE_DATE" property="goodsCreateTime" jdbcType="TIMESTAMP"/>
+		<result column="G_PIC" property="goodsImgSrc" jdbcType="VARCHAR"/>
+	</resultMap>
 	<sql id="allColumns">
-		goodsId,goodsName,goodsDesc,goodsPrice,goodsAddress,
-		goodsCount,goodsCreateTime,goodsImgSrc
+		G_ID,G_NAME,G_DESCRIBE,G_PRICE,G_MADE,G_AMOUNT,G_CREATE_DATE,G_PIC
 	</sql>
 	
 	<!-- 查找数据库中所有的商品信息 -->
@@ -11,5 +20,22 @@
 		select 
 			<include refid="allColumns"/> 
 		from t_goods
+	</select>
+	
+	<!-- 根据参数id查找商品 -->
+	<select id="queryGoodsById" parameterType="java.lang.String" resultMap="goodsMap">
+		select 
+			<include refid="allColumns"/>
+		from t_goods 
+		where G_ID
+	</select>
+	
+	<!-- 根据传入关键字查找商品信息 -->
+	<select id="queryGoodsByKeyword" parameterType="java.lang.String" resultMap="goodsMap">
+		select 
+			<include refid="allColumns"/>
+		from t_goods
+		where 
+		G_NAME like '%'|| #{keyword} ||'%' 
 	</select>
 </mapper>

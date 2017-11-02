@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.qhx.myfbird.common.BaseController;
 import com.qhx.myfbrid.exception.NullValueException;
 import com.qhx.myfbrid.exception.RepeatException;
 import com.qhx.myfbrid.model.User;
@@ -21,8 +22,8 @@ import com.qhx.myfbrid.utils.ResultUtils;
 import com.qhx.myfbrid.utils.UserUtils;
 
 @Controller
-public class UserController {
-	private static Logger logger = LoggerFactory.getLogger(UserController.class);
+public class RegisterController extends BaseController{
+	private static Logger logger = LoggerFactory.getLogger(RegisterController.class);
 	
 	@Autowired
 	private ShiroRealm shiroRealm;

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qhx.myfbrid.dao.OrderMapper">
+	<resultMap type="com.qhx.myfbrid.model.Order" id="orderMap">
+		<result column="G_ORDER_ID" property="orderId" jdbcType="INTEGER"/>
+		<result column="G_ORDER_U_NAME" property="orderName" jdbcType="VARCHAR"/>
+		<result column="G_ORDER_PRICE" property="goodsPrice" jdbcType="DECIMAL"/>
+		<result column="G_ORDER_NUMBER" property="orderCount" jdbcType="INTEGER"/>
+		<result column="G_ORDER_CREATE_DATE" property="orderCreateTime" jdbcType="TIMESTAMP"/>
+		<result column="G_ORDER_RECEIVER" property="receiver" jdbcType="VARCHAR"/>
+		<result column="G_ORDER_PHONE" property="telephone" jdbcType="INTEGER"/>
+		<result column="G_ORDER_ADDRESS" property="sendAddress" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="allColumns">
+		G_ORDER_ID,G_ORDER_U_NAME,G_ORDER_PRICE,G_ORDER_NUMBER,
+		G_ORDER_CREATE_DATE,G_ORDER_RECEIVER,G_ORDER_PHONE,G_ORDER_ADDRESS
+	</sql>
+	
+	<!-- 批量插入订单 -->
+	<insert id="insertBatchOrders" parameterType="java.util.List">
+		insert into t_order 
+			(G_ORDER_ID,G_ORDER_U_NAME,G_ORDER_PRICE,G_ORDER_NUMBER,
+			G_ORDER_CREATE_DATE,G_ORDER_RECEIVER,G_ORDER_PHONE,G_ORDER_ADDRESS)
+		<foreach collection="collection" item="item" separator="UNION ALL">
+			(
+				select 
+					'${item.G_ORDER_ID}','${item.G_ORDER_U_NAME}','${item.G_ORDER_PRICE}','${item.G_ORDER_NUMBER}',
+					'${item.G_ORDER_CREATE_DATE}','${item.G_ORDER_RECEIVER}','${item.G_ORDER_PHONE}','${item.G_ORDER_ADDRESS}'
+				from dual
+			)
+		</foreach>
+	</insert>
+</mapper>

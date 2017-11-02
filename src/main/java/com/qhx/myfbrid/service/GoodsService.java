@@ -10,4 +10,6 @@ import com.qhx.myfbrid.model.Goods;
 
 public interface GoodsService {
 	List<Goods> findAllGoods();
+	Goods findGoodsById(String id);
+	List<Goods> findGoodsByKeyword(String keyword);
 }

@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.qhx.myfbrid.model.Car;
 import com.qhx.myfbrid.model.Goods;
+import com.qhx.myfbrid.model.User;
+import com.qhx.myfbrid.shiro.ShiroManager;
 
 /**
  * common controller 提供一系列公用方法及属性 
@@ -39,8 +41,12 @@ public class BaseController {
 	
 	//获得当前用户名
 	protected String getCurrentUsername(){
-		// TODO Auto-generated method stub
-		return "";
+		User currentUser = ShiroManager.getCurrentUser();
+		if(null != currentUser){
+			return currentUser.getUsername();
+		}else{
+			return "";
+		}
 	}
 	
 	//清空集合

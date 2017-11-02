@@ -13,4 +13,6 @@ import com.qhx.myfbrid.model.Goods;
 @Repository(value = "goodsMapper")
 public interface GoodsMapper {
 	List<Goods> selectAllGoods();
+	Goods queryGoodsById(String id);
+	List<Goods> queryGoodsByKeyword(String keyword);
 }

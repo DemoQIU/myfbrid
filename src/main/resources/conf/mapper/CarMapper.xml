@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qhx.myfbrid.dao.CarMapper">
+	<resultMap type="com.qhx.myfbrid.model.Car" id="carMap">
+		<result column="G_CAR_ID" property="carId" jdbcType="INTEGER"/>
+		<result column="G_CAR_U_NAME" property="saverName" jdbcType="VARCHAR"/>
+		<result column="G_CAR_G_ID" property="goodsId" jdbcType="INTEGER"/>
+		<result column="G_CAR_G_NAME" property="goodsName" jdbcType="VARCHAR"/>
+		<result column="G_CAR_PRICE" property="goodsPrice" jdbcType="DECIMAL"/>
+		<result column="G_CAR_NUMBER" property="carNum" jdbcType="INTEGER"/>
+		<result column="G_CAR_G_MADE" property="originAddress" jdbcType="VARCHAR"/>
+		<result column="G_CAR_CREATE_DATE" property="createTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<sql id="sql4getCar">
+		G_CAR_ID,G_CAR_U_NAME,G_CAR_G_ID,G_CAR_G_NAME,
+		G_CAR_PRICE,G_CAR_NUMBER,G_CAR_G_MADE,G_CAR_CREATE_DATE
+	</sql>
+	
+	<!-- 查找用户名对应的购物车 -->
+	<select id="selectCarByUsername" parameterType="java.lang.String" resultMap="carMap">
+		select 
+			<include refid="sql4getCar"/>
+		from t_car
+		where G_CAR_U_NAME = #{username}
+	</select>
+	
+	<!-- 删除购物车 -->
+	<delete id="deleteCarByIdAndCarname">
+		delete from t_car where
+			G_CAR_G_ID = #{carId} 
+			and 
+			G_CAR_U_NAME = #{saverName}
+	</delete>
+	
+	<!-- 往购物车里添加商品 -->
+	<insert id="addGoods2Car" parameterType="com.qhx.myfbrid.model.Car">
+		insert into t_car (<include refid="sql4getCar"/>)
+			values
+		(#{saverName},#{goodsId},#{goodsName},#{goodsPrice},#{carNum},#{originAddress})
+	</insert>
+</mapper>
