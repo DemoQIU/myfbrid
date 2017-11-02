@@ -7,6 +7,33 @@
 	<%@ include file="/WEB-INF/jsp/common/basejs.jsp" %>
 </head>
 <body id="">
-	<shi
+	<div class="container">
+	   <div class="row">
+	      <div class="col-md-12">
+	      	<div class="col-md-4">
+	      		<shiro:authenticated>
+	      			<div>
+	      				<a href="javascript:void(0)">飞鸟阁下</a>
+	      			</div>
+	      			<span class="whitespace"></span>
+	      		</shiro:authenticated>
+	      		<shiro:guest>
+		      		<div>
+		      			<a href="/login" >亲，请登录</a>
+		      		</div>
+		      		<span class="whitespace"></span>
+		      		<div>
+		      			<a href="javascript:void(0)">免费注册</a>
+		      		</div>
+	      		</shiro:guest>
+	      		<!-- hidden div -->
+	      		<div class="hidden-class">
+	      			
+	      		</div>
+	      	</div>
+	      	<div class="col-md-8"></div>
+	      </div>
+	   </div>
+	</div>
 </body>
 </html>
